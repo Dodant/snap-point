@@ -9,7 +9,7 @@ def basic_info(filepath):
     # 샘플링 레이트는 슬라이싱을 편하게 하기 위해 20000으로 설정
     # 핑거스냅소리를 비트로 인식하여 beat_times으로 친 시간들이 나옴
     y, sr = librosa.load(filepath, sr=20000)
-    tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
+    tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr, hop_length=500)
     beat_times = librosa.frames_to_time(beat_frames, sr=sr)
     duration = librosa.get_duration(y=y, sr=sr)
     print('File Name :', filepath)
@@ -44,4 +44,4 @@ def harm_prec_graph(filepath):
     plt.show()
 
 def lighten(y):
-    return np.around(y, decimals=5)
+    return np.around(y, decimals=2)
