@@ -1,8 +1,13 @@
 import librosa
+import librosa.display
+import IPython.display as ipd
 import numpy as np
 
+# 파일의 기본정보들을 보여준다. 파일명, 파일시간 등
 def basic_info(filepath):
-    y, sr = librosa.load(filepath, sr=40000)
+    # 샘플링 레이트는 슬라이싱을 편하게 하기 위해 20000으로 설정
+    # 핑거스냅소리를 비트로 인식하여 beat_times으로 친 시간들이 나옴
+    y, sr = librosa.load(filepath, sr=20000)
     tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
     beat_times = librosa.frames_to_time(beat_frames, sr=sr)
     duration = librosa.get_duration(y=y, sr=sr)
@@ -12,3 +17,24 @@ def basic_info(filepath):
     print('# of Samples :', len(y))
     print('Beat Times :', len(beat_times))
     print(beat_times)
+
+# AttributeError로 인해 못씀
+# def wave_graph(filepath):
+#     y, sr = librosa.load(filepath, sr=20000)
+#     plt.figure(figsize=(14, 5))
+#     librosa.display.waveplot(y, sr=sr)
+#     plt.show()
+
+
+def specshow_graph(filepath):
+    y, sr = librosa.load(filepath, sr=20000)
+    X = librosa.stft(y)
+    Xdb = librosa.amplitude_to_db(abs(X))
+    plt.figure(figsize=(14, 5))
+    librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')
+    plt.show()
+
+def all_in_one(filepath):
+    basic_info(filepath)
+    # wave_graph(filepath)
+    specshow_graph(filepath)
