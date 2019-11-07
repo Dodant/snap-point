@@ -1,6 +1,7 @@
 import librosa
 import librosa.display
 import IPython.display as ipd
+import matplotlib.pyplot as plt
 import numpy as np
 
 # 파일의 기본정보들을 보여준다. 파일명, 파일시간 등
@@ -18,13 +19,11 @@ def basic_info(filepath):
     print('Beat Times :', len(beat_times))
     print(beat_times)
 
-# AttributeError로 인해 못씀
-# def wave_graph(filepath):
-#     y, sr = librosa.load(filepath, sr=20000)
-#     plt.figure(figsize=(14, 5))
-#     librosa.display.waveplot(y, sr=sr)
-#     plt.show()
-
+def wave_graph(filepath):
+    y, sr = librosa.load(filepath, sr=20000)
+    plt.figure(figsize=(14, 5))
+    librosa.display.waveplot(y, sr=sr)
+    plt.show()
 
 def specshow_graph(filepath):
     y, sr = librosa.load(filepath, sr=20000)
@@ -34,7 +33,15 @@ def specshow_graph(filepath):
     librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')
     plt.show()
 
-def all_in_one(filepath):
-    basic_info(filepath)
-    # wave_graph(filepath)
-    specshow_graph(filepath)
+def harm_prec_graph(filepath):
+    y, sr = librosa.load(filepath, sr=20000)
+    y_harm, y_perc = librosa.effects.hpss(y)
+    plt.figure(figsize=(14, 5))
+    librosa.display.waveplot(y_harm, sr=sr, alpha=0.25)
+    librosa.display.waveplot(y_perc, sr=sr, color='r', alpha=0.5)
+    plt.title('Harmonic + Percussive')
+    plt.tight_layout()
+    plt.show()
+
+def lighten(y):
+    return np.around(y, decimals=5)
