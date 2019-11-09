@@ -1,5 +1,5 @@
 # Snap Point
-2019-2 Econovation ML Project (Team JitterBug)
+2019-2 Econovation ML Project (Team JitterBug) 
 
 ## Using Libraries
 - **Librosa**
