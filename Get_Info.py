@@ -8,6 +8,7 @@ import numpy as np
 # Hop Length = 500
 # n_MFCC = 40
 # 5Frame
+# Data Augmentaion = (+0.1, +0.5, +1.0, -0.1, -0.5, -1.0)
 
 # 파일의 기본정보들을 보여준다. 파일명, 파일시간 등
 def basic_info(filepath):
@@ -27,7 +28,7 @@ def basic_info(filepath):
 def get_shape(filepath):
     y, sr = librosa.load(filepath, sr=20000)
     y_mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40, hop_length=500)
-    print("Raw : "", y.shape)
+    print("Raw : ", y.shape)
     print("Processed : ". y_mfcc.shape)
 
 def wave_graph(filepath):
