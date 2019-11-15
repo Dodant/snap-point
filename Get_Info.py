@@ -7,10 +7,12 @@ import numpy as np
 # Sampling Rate = 20000
 # Hop Length = 500
 # n_MFCC = 40
-# 5Frame
-# Data Augmentaion = (+0.1, +0.5, +1.0, -0.1, -0.5, -1.0)
+# 10 Frame
+# Data Augmentation = (+0.1, +0.5, +1.0, -0.1, -0.5, -1.0)
 
 # 파일의 기본정보들을 보여준다. 파일명, 파일시간 등
+
+
 def basic_info(filepath):
     # 샘플링 레이트는 슬라이싱을 편하게 하기 위해 20000으로 설정
     # 핑거스냅소리를 비트로 인식하여 beat_times으로 친 시간들이 나옴
