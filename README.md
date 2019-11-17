@@ -7,15 +7,6 @@
 - Numpy
 - TensorFlow, Keras
 
-## Documentation
-
-
-## Data Collection
-
-## Data Encoding
-
-## Data Precessing
-
 
 
 ### Contributors (Sound Donators)
