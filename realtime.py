@@ -5,7 +5,7 @@ For more examples using PyAudio:
     https://github.com/mwickert/scikit-dsp-comm/blob/master/sk_dsp_comm/pyaudio_helper.py
 """
 import librosa
-import numpy
+import numpy as np
 import pyaudio
 import time
 
@@ -30,20 +30,16 @@ def generate_string_from_audio(audio_data):
     string to be printed to the terminal.
     """
     # Compute real FFT.
-    x_fft = numpy.fft.rfft(audio_data, n=N_FFT)
-
+    x_fft = np.fft.rfft(audio_data, n=N_FFT)
     # Compute mel spectrum.
     melspectrum = M.dot(abs(x_fft))
-
     # Initialize output characters to display.
     char_list = [' ']*SCREEN_WIDTH
 
     for i in range(SCREEN_WIDTH):
-
         # If there is energy in this frequency bin, display an asterisk.
         if melspectrum[i] > ENERGY_THRESHOLD:
             char_list[i] = '*'
-
         # Draw frequency axis guidelines.
         elif i % 30 == 29:
             char_list[i] = '|'
@@ -52,8 +48,8 @@ def generate_string_from_audio(audio_data):
     return ''.join(char_list)
 
 def callback(in_data, frame_count, time_info, status):
-    audio_data = numpy.fromstring(in_data, dtype=numpy.float32)
-    print( generate_string_from_audio(audio_data) )
+    audio_data = np.fromstring(in_data, dtype=np.float32)
+    print(generate_string_from_audio(audio_data))
     return (in_data, pyaudio.paContinue)
 
 stream = p.open(format=pyaudio.paFloat32,
@@ -66,7 +62,7 @@ stream = p.open(format=pyaudio.paFloat32,
 
 stream.start_stream()
 while stream.is_active():
-    time.sleep(0.050)
+    time.sleep(0.010)
 stream.stop_stream()
 stream.close()
 
