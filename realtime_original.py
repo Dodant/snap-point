@@ -5,13 +5,13 @@ For more examples using PyAudio:
     https://github.com/mwickert/scikit-dsp-comm/blob/master/sk_dsp_comm/pyaudio_helper.py
 """
 import librosa
-import numpy as np
+import numpy
 import pyaudio
 import time
 
 # Define global variables.
 CHANNELS = 1
-RATE = 11025
+RATE = 44100
 FRAMES_PER_BUFFER = 1000
 N_FFT = 4096
 SCREEN_WIDTH = 178
@@ -30,21 +30,30 @@ def generate_string_from_audio(audio_data):
     string to be printed to the terminal.
     """
     # Compute real FFT.
-    # x_fft = np.fft.rfft(audio_data, n=N_FFT)
+    x_fft = numpy.fft.rfft(audio_data, n=N_FFT)
+
     # Compute mel spectrum.
-    # melspectrum = M.dot(abs(x_fft))
+    melspectrum = M.dot(abs(x_fft))
+
     # Initialize output characters to display.
-    # char_list = [' ']*SCREEN_WIDTH
+    char_list = [' ']*SCREEN_WIDTH
 
-    mfcc = librosa.feature.mfcc(audio_data, sr=RATE)
-    mfcc = np.argmax(mfcc.T, axis=1)
+    for i in range(SCREEN_WIDTH):
 
-    return max(mfcc)
+        # If there is energy in this frequency bin, display an asterisk.
+        if melspectrum[i] > ENERGY_THRESHOLD:
+            char_list[i] = '*'
+
+        # Draw frequency axis guidelines.
+        elif i % 30 == 29:
+            char_list[i] = '|'
+
+    # Return string.
+    return ''.join(char_list)
 
 def callback(in_data, frame_count, time_info, status):
-    audio_data = np.fromstring(in_data, dtype=np.float32)
-    i = generate_string_from_audio(audio_data)
-    print(" "*i, i)
+    audio_data = numpy.fromstring(in_data, dtype=numpy.float32)
+    print( generate_string_from_audio(audio_data) )
     return (in_data, pyaudio.paContinue)
 
 stream = p.open(format=pyaudio.paFloat32,
@@ -56,8 +65,10 @@ stream = p.open(format=pyaudio.paFloat32,
                 stream_callback=callback)
 
 stream.start_stream()
+
 while stream.is_active():
-    time.sleep(0.010)
+    time.sleep(0.100)
+
 stream.stop_stream()
 stream.close()
 
