@@ -15,10 +15,3 @@ def snap_count(filepath, hop=500, cp=0.25):
 
 def snap_frames_to_time(snap_frames, sr=22050):
     return librosa.core.frames_to_time(snap_frames, sr=sr, hop_length=1)
-
-# filepath = '30_times.wav'
-# count, snap_frames = snap_count(filepath)
-# snap_time = snap_frames_to_time(snap_frames)
-# count
-# snap_frames
-# snap_time

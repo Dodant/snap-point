@@ -1,6 +1,5 @@
 import librosa
 import librosa.display
-import IPython.display as ipd
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -25,6 +24,10 @@ def normal_graph(filepath):
     plt.xticks(rotation=30)
     librosa.display.waveplot(y, sr=sr)
     plt.show()
+
+def bing(filepath):
+    basic_info(filepath)
+    normal_graph(filepath)
 
 def wave_graph(filepath):
     y, sr = librosa.load(filepath)
