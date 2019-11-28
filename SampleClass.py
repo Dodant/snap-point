@@ -26,7 +26,7 @@ class SoundSample:
     def normal_graph(self, fig_x, fig_y):
         plt.figure(figsize=(fig_x,fig_y))
         plt.plot(y)
-        x_ticks = np.array([i for i in range(0,len(y),(sr/4)])
+        x_ticks = np.array([i for i in range(0,len(y),(sr/4))])
         y_ticks = np.array([i for i in range(-int(np.max(y)*100),int(np.max(y)*100),5)])
         plt.xticks(x_ticks, (x_ticks/sr), rotation=45) # x가 0.25초씩 보임
         plt.yticks((y_ticks/100)) # y가 양수 0.25씩 보임
@@ -98,7 +98,7 @@ class SoundSample:
         cnt = 1
         for file in file_list:
             temp = cutting_file_sound()
-            listSound = np.expand_dims(temp), axis=0) # 데이터셋에 넣음
+            listSound = np.expand_dims(temp, axis=0) # 데이터셋에 넣음
             train = np.concatenate((train,temp), axis=0)
             cnt += 1
         return train # 모든 데이터를 담은 데이터셋 리턴
