@@ -4,30 +4,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def basic_info(filepath):
-    y, sr = librosa.load(filepath)
-    duration = librosa.get_duration(y=y, sr=sr)
-    print('File Name :', filepath)
-    print('File Duration :', duration)
-    print('Sampling Rate :', sr)
-    print('# of Samples :', len(y))
-
 def get_shape(filepath):
     y, sr = librosa.load(filepath)
     y_mfcc = librosa.feature.mfcc(y=y, sr=sr)
     print("Raw : ", y.shape)
     print("Processed : ". y_mfcc.shape)
-
-def normal_graph(filepath):
-    y, sr = librosa.load(filepath)
-    plt.figure(figsize=(16, 5))
-    plt.xticks(rotation=30)
-    librosa.display.waveplot(y, sr=sr)
-    plt.show()
-
-def bing(filepath):
-    basic_info(filepath)
-    normal_graph(filepath)
 
 def wave_graph(filepath):
     y, sr = librosa.load(filepath)
