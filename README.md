@@ -1,4 +1,4 @@
-# Snap Point
+# Snap Point 
 2019-2 CNU Econovation ML Project (Team JitterBug) 
 
 ## Using Libraries
