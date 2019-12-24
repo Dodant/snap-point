@@ -61,7 +61,7 @@ def callback(in_data, frame_count, time_info, status):
     for i in range(0, int(RATE / FRAMES_PER_BUFFER * 0.2)):
         data = stream.read(FRAMES_PER_BUFFER)
         frames.append(data)
-    return (in_data, pyaudio.paContinue)
+    return in_data, pyaudio.paContinue
 
 stream = p.open(format=pyaudio.paFloat32,
                 channels=CHANNELS,
