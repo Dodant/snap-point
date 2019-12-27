@@ -9,7 +9,7 @@
 - Numpy
 - TensorFlow
 - Keras
-
+- OS, Time
 
 ### Contributors (Sound Donators)
 - Econovation
