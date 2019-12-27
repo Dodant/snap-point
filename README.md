@@ -3,11 +3,12 @@
 
 ## Using Libraries
 - **Librosa**
+- PyAutoGUI
 - PyAudio
 - Matplotlib
 - Numpy
-- TensorFlow, Keras
-
+- TensorFlow
+- Keras
 
 
 ### Contributors (Sound Donators)
