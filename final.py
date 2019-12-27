@@ -21,7 +21,6 @@ def test(sample):
         pyautogui.press('space')
         print("Snap")
         time.sleep(0.1)
-    else : return
 
 def callback(in_data, frame_count, time_info, status):
     test(numpy.frombuffer(in_data, dtype=numpy.float64))
