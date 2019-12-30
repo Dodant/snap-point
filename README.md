@@ -11,6 +11,15 @@
 - Keras
 - OS, Time
 
+## Usage (Prediction)
+- version 1.0
+  - 0 = noise
+  - 1 = snap & clap
+- version 1.1
+  - 0 = noise
+  - 1 = snap
+  - 2 = clap
+
 ### Contributors (Sound Donators)
 - Econovation
   - 김서영, 김양하, 김종근, 김정인, 김창영, 남수민, 신재욱, 오중균
