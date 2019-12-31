@@ -11,7 +11,7 @@
 - Keras
 - OS, Time
 
-## Usage (Prediction)
+## Usage
 - version 1.0
   - 0 = noise
   - 1 = snap & clap
@@ -19,6 +19,10 @@
   - 0 = noise
   - 1 = snap
   - 2 = clap
+
+## OS Support
+- macOS
+- Windows
 
 ### Contributors (Sound Donators)
 - Econovation
