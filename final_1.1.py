@@ -8,7 +8,7 @@ FRAMES_PER_BUFFER = 1024 * 17
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 p = pyaudio.PyAudio()
-loaded_model = models.load_model('/Users/Dodanto/Documents/GitHub/SnapPoint/SnapPoint.h5')
+loaded_model = models.load_model('/Users/Dodanto/Documents/GitHub/SnapPoint/ver_1.1.h5')
 
 def standardized_mfcc(y):
     sample = librosa.feature.mfcc(y=y, sr=44100, n_mfcc=40)
@@ -21,6 +21,14 @@ def test(sample):
         pyautogui.press('space')
         print("Snap")
         time.sleep(0.1)
+    elif numpy.argmax(predictions) == 2:
+        pyautogui.keyDown('shift')
+        pyautogui.press('n')
+        pyautogui.keyUp('shift')
+        print("Clap")
+        time.sleep(0.1)
+    else :
+        return
 
 def callback(in_data, frame_count, time_info, status):
     test(numpy.frombuffer(in_data, dtype=numpy.float64))
