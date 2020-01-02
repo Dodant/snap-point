@@ -8,7 +8,7 @@ FRAMES_PER_BUFFER = 1024 * 17
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 p = pyaudio.PyAudio()
-loaded_model = models.load_model('/Users/Dodanto/Documents/GitHub/SnapPoint/ver_1.1.h5')
+loaded_model = models.load_model('ver_1.1.h5')
 
 def standardized_mfcc(y):
     sample = librosa.feature.mfcc(y=y, sr=44100, n_mfcc=40)
