@@ -16,13 +16,9 @@
   - 0 = noise
   - 1 = snap & clap
 - version 1.1
-  - 0 = noise
-  - 1 = snap
-  - 2 = clap
-
-## OS Support
-- macOS
-- Windows
+  - 0 = snap
+  - 1 = clap
+  - 2 = noise
 
 ### Contributors (Sound Donators)
 - Econovation
