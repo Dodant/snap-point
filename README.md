@@ -3,7 +3,7 @@
 
 ## Using Libraries
 - **Librosa**
-- PyAutoGUI
+- **PyAutoGUI**
 - PyAudio
 - Matplotlib
 - Numpy
