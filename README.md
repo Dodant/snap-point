@@ -20,7 +20,7 @@
   - 1 = clap
   - 2 = noise
   
- > Just Use ver_1.0.h5 and final_1.0.py
+ > Just Use 'ver_1.0.h5' and 'final_1.0.py'
 
 ### Contributors (Sound Donators)
 - Econovation
