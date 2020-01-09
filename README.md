@@ -15,7 +15,7 @@
 - version 1.0
   - 0 = noise
   - 1 = snap & clap
-- version 1.1
+- version 1.1 (권장하지 않음)
   - 0 = snap
   - 1 = clap
   - 2 = noise
