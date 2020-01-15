@@ -12,15 +12,7 @@
 - OS, Time
 
 ## Usage
-- version 1.0
-  - 0 = noise
-  - 1 = snap & clap
-- version 1.1 (권장하지 않음)
-  - 0 = snap
-  - 1 = clap
-  - 2 = noise
-  
- > Just Use 'ver_1.0.h5' and 'final_1.0.py'
+To Be Updated
 
 ### Contributors (Sound Donators)
 - Econovation
