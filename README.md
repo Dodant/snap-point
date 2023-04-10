@@ -7,9 +7,7 @@
 - PyAudio
 - Matplotlib
 - Numpy
-- TensorFlow
-- Keras
-- OS, Time
+- TensorFlow & Keras
 
 ## Usage
 To Be Updated
