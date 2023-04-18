@@ -1,15 +1,16 @@
+
+import os
+import time
+
 import librosa
 import numpy
 import pyaudio
-import time
 import tensorflow as tf
-import os
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras import utils
 
-# Define global variables.
 CHANNELS = 1
 RATE = 44100
 FRAMES_PER_BUFFER = 1024 * 17
@@ -17,18 +18,18 @@ N_FFT = 4096
 SCREEN_WIDTH = 178
 ENERGY_THRESHOLD = 0.4
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
-# Choose the frequency range of your log-spectrogram.
 F_LO = librosa.note_to_hz('C2')
 F_HI = librosa.note_to_hz('C9')
 M = librosa.filters.mel(RATE, N_FFT, SCREEN_WIDTH, fmin=F_LO, fmax=F_HI)
 p = pyaudio.PyAudio()
-loaded_model = tf.keras.models.load_model('/Users/Dodanto/Documents/GitHub/SnapPoint/SnapPoint.h5')
+loaded_model = tf.keras.models.load_model('ver_1.1.h5')
+
 
 def mfcc(y):
     sample = librosa.feature.mfcc(y=y, sr=44100, n_mfcc=40)
     sample = numpy.expand_dims(sample.T,axis=0)
     return sample
+
 
 def test(sample):
     data = mfcc(sample)
@@ -40,6 +41,7 @@ def test(sample):
         return 'Snap & Clap'
     else:
         return ''
+
 
 def generate_string_from_audio(audio_data):
 
@@ -54,6 +56,7 @@ def generate_string_from_audio(audio_data):
             char_list[i] = '|'
     return ''.join(char_list)
 
+
 def callback(in_data, frame_count, time_info, status):
     audio_data = numpy.frombuffer(in_data, dtype=numpy.float64)
     print( generate_string_from_audio(audio_data), test(audio_data) )
@@ -62,6 +65,7 @@ def callback(in_data, frame_count, time_info, status):
         data = stream.read(FRAMES_PER_BUFFER)
         frames.append(data)
     return in_data, pyaudio.paContinue
+
 
 stream = p.open(format=pyaudio.paFloat32,
                 channels=CHANNELS,
